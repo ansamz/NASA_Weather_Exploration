@@ -13,7 +13,7 @@ here
 
 The project involves the following key methods:
 
-1. **here:** here
+1. **NASA's API:** https://api.nasa.gov/
 
 ### Technologies
 
