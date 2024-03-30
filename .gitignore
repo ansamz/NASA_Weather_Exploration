@@ -346,3 +346,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Ignore sql cache file
+*.cache.sqlite
