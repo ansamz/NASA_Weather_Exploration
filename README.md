@@ -1,6 +1,6 @@
-# Name
+# Comparing Skies
 
-![alternative text](img/...)
+![alternative text](img/human_martian.png)
 
 
 #### -- Project Status: [In Progress]
