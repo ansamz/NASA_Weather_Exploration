@@ -94,11 +94,17 @@ cd python
 cp -r ../v-env/lib/python3.9/site-packages/* .
 cd ..
 zip -r my_custom_layer.zip python
+
+# save to s3 bucket
+aws s3 cp my_custom_layer.zip s3://databaseenv/
+
 aws lambda publish-layer-version --layer-name my_custom_lambda_layer --zip-file fileb://my_custom_layer.zip --compatible-runtimes python3.9
 
 ```
 
 Download the layer.zip from cloud9 (you can see it in the sidebar)
+I downloaded the zipfile and added it to an s3 bucket and from there linked it to a layer
+
 
 ### Create the Lambda Layer
 1. **Go to the Lambda Console** 
@@ -191,8 +197,8 @@ After that and for budget reasons it's no longer necessary to keep the Cloud9 en
             api_key = os.environ['API_KEY']
             bucket_name = os.environ['BUCKET_NAME']  # Assume bucket name is stored in environment variables
 
-            end_date = datetime.utcnow()
-            start_date = end_date - timedelta(days=7)
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=30)
             start_date_str = start_date.strftime('%Y-%m-%d')
             end_date_str = end_date.strftime('%Y-%m-%d')
 
@@ -211,7 +217,7 @@ After that and for budget reasons it's no longer necessary to keep the Cloud9 en
                     normalized_data.to_csv(file_path, index=False)
                     
                     # Upload to S3
-                    s3.upload_file(file_path, bucket_name, file_name)
+                    s3.upload_file(file_path, 'solarflaredata', file_name)
                     logger.info(f"Data saved to S3 successfully, number of entries: {len(data)}")
                 else:
                     logger.info("No data available for the given date range.")
