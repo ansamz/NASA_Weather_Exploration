@@ -1,6 +1,6 @@
 Go to Modules -> then: Launch AWS Academy Learner Lab -> Start Lab -> click on aws with green light
 
-### Step 1: Create S3 bucket
+## Step 1: Create S3 bucket
 
 1. **Create bucket**:
     - Search for S3 bucket and click `create bucket` -> `solarflaredata`
@@ -10,8 +10,9 @@ Go to Modules -> then: Launch AWS Academy Learner Lab -> Start Lab -> click on a
     - Bucket Versioning: Enable
     - Bucket Key: Enable
 
+> **_NOTE:_** choose Linux 2 it's the most stable version
 
-### Step 2: Set Up an AWS Cloud9 Environment
+## Step 2: Set Up an AWS Cloud9 Environment
 1. **Open the AWS Cloud9 Console** simply search for it
 2. **Create a new environment**: Click on "Create environment".
 3. **Name your environment** I chose default settings and access environment through ssh.
@@ -106,7 +107,7 @@ Download the layer.zip from cloud9 (you can see it in the sidebar)
 I downloaded the zipfile and added it to an s3 bucket and from there linked it to a layer
 
 
-### Create the Lambda Layer
+## Step 3: Create the Lambda Layer
 1. **Go to the Lambda Console** 
 2. **Choose "Layers"** in the sidebar and then click "Create layer".
 3. **Upload the ZIP file** created in Cloud9:
@@ -127,7 +128,7 @@ After that and for budget reasons it's no longer necessary to keep the Cloud9 en
 3. **Click "Delete"** and follow the prompts to confirm the deletion.
 
 
-### Step 3: Setting Up the Data Source with AWS Lambda
+### Setting Up the Data Source with AWS Lambda
 
 1. **Create an AWS Lambda Function**:
    - Go to the AWS Lambda console in AWS Academy Learner Lab (found iy in search).
@@ -195,7 +196,7 @@ After that and for budget reasons it's no longer necessary to keep the Cloud9 en
 
         def lambda_handler(event, context):
             api_key = os.environ['API_KEY']
-            bucket_name = os.environ['BUCKET_NAME']  # Assume bucket name is stored in environment variables
+            bucket_name = os.environ['BUCKET_NAME']
 
             end_date = datetime.now()
             start_date = end_date - timedelta(days=30)
@@ -241,15 +242,38 @@ In AWS Lambda, event and context are two parameters passed to the handler functi
 
 - **context** - This parameter provides methods and properties that provide information about the invocation, function, and execution environment. The context object contains information such as the function's CloudWatch log group, the request ID, the time remaining before AWS Lambda terminates the function (timeout), etc.
 
-### Step 6: Deploy and Test Your Lambda Function
-Now test and deploy the Lambda function make sure to test it to ensure that it executes correctly.
-
-----------------------------------------------------------------
-TODO got here, check if data in bucket and if not why
+### Step 6: Deploy and Test Lambda Function
+Make sure it executes correctly.
 
 
-### Step 2: Processing and Storing Data
+## Step 4: Create a lake
 
+### Create a Glue Database
+
+https://gemini.google.com/app/aadc9c28a2155bdc
+after doing that continue with the moving s3 bucket and then go up to check how to create the data lake
+
+### Move data to one S3 bucket 
+
+Consalidate all the data in the solarflaredata S3 bucket using AWS glue.
+
+1. Select AWS Glue
+2. To the left click ETL jobs
+3. Create job from a blank graph
+4. Job Details (tab)
+5. add name "movedatas3"
+6. select an IAM role that has permissions to read from your source buckets and write to the target bucket. I only have LabRole and went with it.
+7. Type: Select "Spark".
+8. Choose glue version.
+9. choose python language
+10. click save
+
+1. Search for AWS Lake Formation and click permissions
+2.  create database
+3. add the s3 buckets links to location:
+
+
+## Step 5: something something
 1. **Process Data**:
    - After fetching the data, use Pandas within the Lambda function to normalize and process the data as required. For instance, convert dates to datetime objects and classify the flare types.
    - Example code for processing:
