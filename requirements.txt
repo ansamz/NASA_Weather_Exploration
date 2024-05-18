@@ -2,3 +2,7 @@ requests
 matplotlib
 statsmodels
 plotly
+boto3
+psycopg2-binary
+sqlalchemy
+streamlit

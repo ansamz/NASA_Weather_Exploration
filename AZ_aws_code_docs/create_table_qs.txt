@@ -1,0 +1,39 @@
+CREATE TABLE mars_weather (
+    id INT NOT NULL,
+    terrestrial_date TIMESTAMP NOT NULL,
+    sol INT NOT NULL,
+    ls INT NOT NULL,
+    month VARCHAR(255) NOT NULL,
+    min_temp FLOAT,
+    max_temp FLOAT,
+    pressure FLOAT,
+    atmo_opacity VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE solar_flare_data (
+    id SERIAL PRIMARY KEY,
+    flrID VARCHAR(255) NOT NULL,
+    instruments VARCHAR(255) NOT NULL,
+    beginTime TIMESTAMP NOT NULL,
+    peakTime TIMESTAMP NOT NULL,
+    endTime TIMESTAMP NOT NULL,
+    classType VARCHAR(255) NOT NULL,
+    sourceLocation VARCHAR(255) NOT NULL,
+    activeRegionNum FLOAT,
+    note TEXT,
+    linkedEvents TEXT,
+    submissionTime VARCHAR(255) NOT NULL,
+    link VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE weather_data (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP NOT NULL,
+    latitude FLOAT,
+    longitude FLOAT,
+    temperature_2m FLOAT,
+    relative_humidity_2m FLOAT,
+    rain FLOAT,
+    direct_radiation_instant FLOAT
+);

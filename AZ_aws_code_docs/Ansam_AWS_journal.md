@@ -245,35 +245,84 @@ In AWS Lambda, event and context are two parameters passed to the handler functi
 ### Step 6: Deploy and Test Lambda Function
 Make sure it executes correctly.
 
+## Step 4: create an aurora postgred sql database
 
-## Step 4: Create a lake
+1. got to RDS dashboard (searched for it)
+2. click create database 
+3. select Aurora (PostgreSQL Compatible)
+4. select the default version
+5. public access -> yes
+6. get the lowest memory and no monitoring otherwise there will be an error creating the database.
 
-### Create a Glue Database
+7. download and install PostgreSQL installer https://www.postgresql.org/download/windows/
+8. Add PostgreSQL to the System PATH:
+    Open the Control Panel.
+    Go to System and Security -> System -> Advanced system settings
+    Click on the "Environment Variables" button.
+    In the "System variables" section, find the Path variable and click "Edit".
+    Add the path to the PostgreSQL bin directory (e.g., C:\Program Files\PostgreSQL\16\bin).
+    open git bash and type `psql --version`
+9. find Endpoint: in the RDS Dashboard -> "Databases" section and select the Aurora PostgreSQL cluster. Copy the "Endpoint" (e.g., my-aurora-cluster.cluster-xxxxxx.us-west-2.rds.amazonaws.com)
+10. connect to the database `psql -h my-aurora-cluster.cluster-xxxxxx.us-west-2.rds.amazonaws.com -U master_username -d postgres`
 
-https://gemini.google.com/app/aadc9c28a2155bdc
-after doing that continue with the moving s3 bucket and then go up to check how to create the data lake
+From 7-10 didn't work
 
-### Move data to one S3 bucket 
+so I connected to dbeaver and from there connected to th aws database 
+here is the connection details:
 
-Consalidate all the data in the solarflaredata S3 bucket using AWS glue.
+<img src="../img/dbeaverconn.jpg" alt="dbeaverconn" width="600" height="auto">
 
-1. Select AWS Glue
-2. To the left click ETL jobs
-3. Create job from a blank graph
-4. Job Details (tab)
-5. add name "movedatas3"
-6. select an IAM role that has permissions to read from your source buckets and write to the target bucket. I only have LabRole and went with it.
-7. Type: Select "Spark".
-8. Choose glue version.
-9. choose python language
-10. click save
+### Create the tables 
 
-1. Search for AWS Lake Formation and click permissions
-2.  create database
-3. add the s3 buckets links to location:
+```SQL
+CREATE TABLE mars_weather (
+    id INT NOT NULL,
+    terrestrial_date TIMESTAMP NOT NULL,
+    sol INT NOT NULL,
+    ls INT NOT NULL,
+    month VARCHAR(255) NOT NULL,
+    min_temp FLOAT,
+    max_temp FLOAT,
+    pressure FLOAT,
+    atmo_opacity VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE solar_flare_data (
+    id SERIAL PRIMARY KEY,
+    flrID VARCHAR(255) NOT NULL,
+    instruments VARCHAR(255) NOT NULL,
+    beginTime TIMESTAMP NOT NULL,
+    peakTime TIMESTAMP NOT NULL,
+    endTime TIMESTAMP NOT NULL,
+    classType VARCHAR(255) NOT NULL,
+    sourceLocation VARCHAR(255) NOT NULL,
+    activeRegionNum FLOAT,
+    note TEXT,
+    linkedEvents TEXT,
+    submissionTime VARCHAR(255) NOT NULL,
+    link VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE weather_data (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP NOT NULL,
+    latitude FLOAT,
+    longitude FLOAT,
+    temperature_2m FLOAT,
+    relative_humidity_2m FLOAT,
+    rain FLOAT,
+    direct_radiation_instant FLOAT
+);
+```
+
+## Step 5: move the data to the tables
+
+Move all the data to one S3 bucket in order to move it to a database.
+
+check the script data_transfer.py
 
 
-## Step 5: something something
 1. **Process Data**:
    - After fetching the data, use Pandas within the Lambda function to normalize and process the data as required. For instance, convert dates to datetime objects and classify the flare types.
    - Example code for processing:
