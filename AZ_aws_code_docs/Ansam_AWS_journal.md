@@ -322,54 +322,6 @@ Move all the data to one S3 bucket in order to move it to a database.
 
 check the script data_transfer.py
 
+## Step 6 connect a streamlit app to the database
 
-1. **Process Data**:
-   - After fetching the data, use Pandas within the Lambda function to normalize and process the data as required. For instance, convert dates to datetime objects and classify the flare types.
-   - Example code for processing:
-     ```python
-     import pandas as pd
-
-     # Assuming 'data' is loaded JSON from the API
-     df = pd.json_normalize(data)
-
-     # Convert date fields to datetime
-     df['beginTime'] = pd.to_datetime(df['beginTime'])
-     df['endTime'] = pd.to_datetime(df['endTime'])
-
-     # Map flare classes to intensity descriptions
-     flare_intensity = {
-         'X': 'Most intense',
-         'M': 'Medium',
-         'C': 'Small',
-         'B': 'Very Small',
-         'A': 'Smallest'
-     }
-     df['intensity'] = df['classType'].str[0].map(flare_intensity)
-     ```
-
-2. **Store Processed Data in S3**:
-   - Configure your Lambda function to write the processed DataFrame to a CSV file or directly to a Parquet file, which is more efficient for AWS analytics services.
-   - Use the `boto3` library to upload the file to an S3 bucket designated as your data lake.
-
-### Step 3: Setting Up AWS Glue and Athena for Data Lake Queries
-
-1. **AWS Glue**:
-   - Use AWS Glue to catalog the data stored in S3. This involves creating a crawler that scans your S3 bucket and builds a metadata catalog.
-   - The catalog can then be used by AWS Athena and other AWS services to query the data.
-
-2. **AWS Athena**:
-   - Once your data is cataloged in Glue, use Athena to run SQL queries directly against your data lake stored in S3.
-   - This is helpful for ad-hoc analysis and can be accessed directly from the AWS Console.
-
-### Step 4: Automate and Monitor
-
-- **Automation**: The entire process from data fetching to processing and storing is automated using Lambda and EventBridge.
-- **Monitoring**: Use AWS CloudWatch to monitor the execution of your Lambda functions, and set up alerts for any failures or performance issues.
-
-### Final Considerations
-
-- **Security**: Ensure that all data, especially sensitive or personal data, is handled securely. Implement proper IAM roles and policies.
-- **Cost Management**: Monitor the usage and associated costs with running services, especially when querying with Athena or storing large amounts of data in S3.
-- **Error Handling**: Implement robust error handling in your Lambda function to manage API downtimes or data inconsistencies.
-
-By following these steps, you can set up a robust data pipeline that regularly retrieves, processes, and stores solar flare data from NASA, leveraging the power of AWS services.
+and create visualizations
