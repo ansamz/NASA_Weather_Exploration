@@ -11,9 +11,6 @@ import io
 import os
 from PIL import Image
 
-
-
-
 path = os.path.dirname(__file__)
 
 #_______ Page Setup

@@ -21,3 +21,30 @@ def weather_data_location(city_name):
             return result
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def earth_weather_data():
+    try:
+        with engine.connect() as connection:
+            print("Successfully connected to the database!")
+            result = pd.read_sql_query(f"SELECT * FROM weather_data;", connection)
+            return result
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def mars_weather_data():
+    try:
+        with engine.connect() as connection:
+            print("Successfully connected to the database!")
+            result = pd.read_sql_query(f"SELECT * FROM mars_weather;", connection)
+            return result
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def solar_flares_data():
+    try:
+        with engine.connect() as connection:
+            print("Successfully connected to the database!")
+            result = pd.read_sql_query(f"SELECT * FROM solar_flare_data;", connection)
+            return result
+    except Exception as e:
+        print(f"An error occurred: {e}")
