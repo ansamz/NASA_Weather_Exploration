@@ -275,45 +275,47 @@ here is the connection details:
 ### Create the tables 
 
 ```SQL
-CREATE TABLE mars_weather (
-    id INT NOT NULL,
-    terrestrial_date TIMESTAMP NOT NULL,
-    sol INT NOT NULL,
-    ls INT NOT NULL,
-    month VARCHAR(255) NOT NULL,
-    min_temp FLOAT,
-    max_temp FLOAT,
-    pressure FLOAT,
-    atmo_opacity VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
+    CREATE TABLE mars_weather (
+        primary_key SERIAL PRIMARY KEY,
+        id INT NOT NULL,
+        terrestrial_date TIMESTAMP,
+        sol INT,
+        ls INT,
+        month VARCHAR(255),
+        min_temp FLOAT,
+        max_temp FLOAT,
+        pressure FLOAT,
+        atmo_opacity VARCHAR(255)
+    );
 
-CREATE TABLE solar_flare_data (
-    id SERIAL PRIMARY KEY,
-    flrID VARCHAR(255) NOT NULL,
-    instruments VARCHAR(255) NOT NULL,
-    beginTime TIMESTAMP NOT NULL,
-    peakTime TIMESTAMP NOT NULL,
-    endTime TIMESTAMP NOT NULL,
-    classType VARCHAR(255) NOT NULL,
-    sourceLocation VARCHAR(255) NOT NULL,
-    activeRegionNum FLOAT,
-    note TEXT,
-    linkedEvents TEXT,
-    submissionTime VARCHAR(255) NOT NULL,
-    link VARCHAR(255) NOT NULL
-);
+    CREATE TABLE solar_flare_data (
+        id SERIAL PRIMARY KEY,
+        flrID VARCHAR(255),
+        instruments VARCHAR(255),
+        beginTime TIMESTAMP,
+        peakTime TIMESTAMP,
+        endTime TIMESTAMP,
+        classType VARCHAR(255),
+        sourceLocation VARCHAR(255),
+        activeRegionNum FLOAT,
+        note TEXT,
+        linkedEvents TEXT,
+        submissionTime VARCHAR(255),
+        link VARCHAR(255),
+        intensity VARCHAR(255)
+    );
 
-CREATE TABLE weather_data (
-    id SERIAL PRIMARY KEY,
-    date TIMESTAMP NOT NULL,
-    latitude FLOAT,
-    longitude FLOAT,
-    temperature_2m FLOAT,
-    relative_humidity_2m FLOAT,
-    rain FLOAT,
-    direct_radiation_instant FLOAT
-);
+    CREATE TABLE weather_data (
+        id SERIAL PRIMARY KEY,
+        date TIMESTAMP,
+        latitude FLOAT,
+        longitude FLOAT,
+        temperature_2m FLOAT,
+        relative_humidity_2m FLOAT,
+        rain FLOAT,
+        direct_radiation_instant FLOAT,
+        location VARCHAR(255)
+    );
 ```
 
 ## Step 5: move the data to the tables
