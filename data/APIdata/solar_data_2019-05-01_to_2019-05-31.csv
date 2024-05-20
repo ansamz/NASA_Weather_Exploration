@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2019-05-06T05:04:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2019-05-06T05:04Z,2019-05-06T05:10Z,,C9.9,N08E50,12740,,,2019-05-06T14:17Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/14704/-1

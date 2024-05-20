@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2017-01-21T07:23:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2017-01-21T07:23Z,2017-01-21T07:26Z,2017-01-21T07:37Z,C9.3,N12E45,12628,This is the highest of many B and C class flares that occurred throughout the day from AR2628,,2017-01-22T01:02Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/12125/-1

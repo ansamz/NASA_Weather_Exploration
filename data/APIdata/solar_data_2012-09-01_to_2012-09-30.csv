@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2012-09-27T23:36:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2012-09-27T23:36Z,2012-09-27T23:57Z,2012-09-28T00:34Z,C3.7,N09W26,11577,,"[{'activityID': '2012-09-28T02:25:00-CME-001'}, {'activityID': '2012-09-28T02:47:00-SEP-001'}, {'activityID': '2012-09-28T03:00:00-SEP-001'}, {'activityID': '2012-09-28T05:21:00-SEP-001'}]",2015-07-17T15:38Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/6354/-1

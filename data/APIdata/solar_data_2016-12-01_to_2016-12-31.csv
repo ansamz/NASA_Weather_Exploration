@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2016-12-10T16:48:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2016-12-10T16:48Z,2016-12-10T17:15Z,2016-12-10T17:35Z,C4.0,S07W89,,This solar flare occurred on the western limb and can be seen very clearly in both SDO 171 and 193.  The eruption is characterized by significant moving and opening field lines.,[{'activityID': '2016-12-10T17:24:00-CME-001'}],2016-12-10T18:45Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/11977/-1

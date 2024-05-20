@@ -1,0 +1,3 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2017-03-27T11:07:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2017-03-27T11:07Z,2017-03-27T11:12Z,2017-03-27T12:43Z,C3.2,S10E65,,,[{'activityID': '2017-03-27T12:12:00-CME-001'}],2017-03-28T14:19Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/12329/-1
+1,2017-03-27T17:55:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2017-03-27T17:55Z,2017-03-27T18:20Z,2017-03-27T18:47Z,C5.1,S10E60,,,,2017-03-27T21:05Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/12330/-1
