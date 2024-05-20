@@ -30,7 +30,7 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-# Load your local image
+
 background_image = "images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
@@ -149,6 +149,7 @@ with col_1:
     st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
 
 with col_2:
+    st.title("")
     st.image("images/logo_main.png", width=300)
 
 
@@ -189,5 +190,4 @@ sidney_html = Image.open(path + "/sidney.html")
 with open(sidney_html,'r') as f: 
     html_data = f.read()
 
-## Show in webpage
 st.components.v1.html(html_data, height = 500, scrolling = True)
