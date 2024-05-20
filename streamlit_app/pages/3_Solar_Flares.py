@@ -11,14 +11,14 @@ import io
 import os
 from PIL import Image
 
-path = os.path.dirname(__file__)
+path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
 
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
     page_icon="earth_spin.gif",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 
@@ -42,9 +42,8 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
+
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
-
-
 
 st.markdown("""
 <style>
@@ -63,23 +62,23 @@ st.markdown("""
 }
 </style>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, rgba(27,68,214,0.5) 0%, rgba(9,121,108,0.8) 39%, rgba(121,255,0,0.2) 100%); height: 100px;">
-  <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Data Professor</a>
+  <a class="navbar-brand" href="/home">Data Warehouse and Data Lake Systems</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
     <ul class="navbar-nav"> 
       <li class="nav-item active">
-        <a class="nav-link disabled" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link disabled" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://youtube.com/dataprofessor" target="_blank">Earth</a>
+        <a class="nav-link" href="/Earth_Weather">Earth</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://twitter.com/thedataprof" target="_blank">Mars</a>
+        <a class="nav-link" href="/Mars_Weather">Mars</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://twitter.com/thedataprof" target="_blank">Flares</a>
+        <a class="nav-link" href="/Solar_Flares">Flares</a>
       </li>
     </ul>
   </div>
@@ -142,49 +141,13 @@ col_1, col_2, col_3 = st.columns([7, 2, 1])
 
 with col_1:
     st.title("")
-    st.title("Comparing Skies ")
-    st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
+    st.title("Solar Flares")
+    # st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
 
 with col_2:
     st.title("")
     st.image("images/logo_main.png", width=300)
 
 
-df = pd.read_json('weather_sydney.json')
-
-def main():
-    st.title("Sydney Weather Visualization")
-
-    selected_feature_options = ["Rain", "Temperature", "Radiation"]
-    selected_feature = st.selectbox(
-        "Select a Feature",
-        options=selected_feature_options,
-        index=selected_feature_options.index("Rain")  # Default option
-    )
-
-    feature_columns = {
-        "Rain": "rain",
-        "Temperature": "temperature_2m",
-        "Radiation": "direct_radiation_instant"
-    }
-
-    selected_column_name = feature_columns[selected_feature]
-    filtered_df = df[df[selected_column_name].notna()]
-
-    if not filtered_df.empty:
-        fig = px.line(filtered_df, x="date", y=selected_column_name, title=f"{selected_feature} Over Time")
-        st.plotly_chart(fig)
-    else:
-        st.write(f"No data available for {selected_feature}. Please check your dataset.")
-
-
-if __name__ == "__main__":
-    main()
-
-
-sidney_html = Image.open(path + "/sidney.html")
-
-with open(sidney_html,'r') as f: 
-    html_data = f.read()
-
-st.components.v1.html(html_data, height = 500, scrolling = True)
+st.write("Solar Flares ")
+st.write("Description")
