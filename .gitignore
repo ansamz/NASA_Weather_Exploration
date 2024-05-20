@@ -3,6 +3,8 @@
 config.json
 awsconfig.json
 
+streamlit_app\streamlit_prep.ipynb
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/

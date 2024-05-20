@@ -68,7 +68,7 @@ s3 = boto3.client('s3',
                   )
 
 # bucket names
-buckets = ['meteoswissdata'] # 'marskaggledata', 'solarflaredata', 
+buckets = ['solarflaredata'] # 'marskaggledata', 'meteoswissdata', 
 
 # Connect to Aurora PostgreSQL
 # how to write it: engine = create_engine('postgresql+psycopg2://username:password@host:port/database')
