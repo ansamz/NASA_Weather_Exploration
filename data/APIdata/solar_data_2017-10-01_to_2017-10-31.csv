@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2017-10-20T23:10:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2017-10-20T23:10Z,2017-10-20T23:28Z,2017-10-21T23:37Z,M1.1,S10E90,12685,"flare at the east limb seen in AIA 193/131/304, from former AR 12673, has no AR number yet.",[{'activityID': '2017-10-21T00:12:00-CME-001'}],2017-10-21T23:09Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/13344/-1

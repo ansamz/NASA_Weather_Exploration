@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2021-02-26T07:01:00-FLR-001,[{'displayName': 'GOES-P: EXIS 1.0-8.0'}],2021-02-26T07:01Z,2021-02-26T07:25Z,,B9.5,S23W43,12805,This flare is visible in SDO/AIA 335 and STA EUVI 195 and is associated with a CME eruption. A post-eruption arcade follows the CME eruption which is visible in STA EUVI 195 beginning around 07:45Z.,[{'activityID': '2021-02-26T08:53:00-CME-001'}],2021-02-26T20:57Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/16539/-1

@@ -1,0 +1,3 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2019-01-26T13:13:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2019-01-26T13:13Z,2019-01-26T13:22Z,,C5.0,N05W26,12733,,,2019-01-26T15:07Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/14440/-1
+1,2019-01-30T05:57:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2019-01-30T05:57Z,2019-01-30T06:11Z,,C5.2,N05W79,12733,"AR 2733 is very close to the western limb, so the actual flare may be more intense. It is also not clear if the flare produced a CME, as the AIA images are not clear due to the proximity to the solar limb.",,2019-01-31T01:19Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/14462/-1

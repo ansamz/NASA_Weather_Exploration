@@ -1,0 +1,2 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2016-03-16T06:34:00-FLR-001,[{'displayName': 'GOES15: SEM/XRS 1.0-8.0'}],2016-03-16T06:34Z,2016-03-16T06:45Z,2016-03-16T06:57Z,C2.2,N12W88,12522,,[{'activityID': '2016-03-16T07:00:00-CME-001'}],2016-03-16T15:34Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/10362/-1

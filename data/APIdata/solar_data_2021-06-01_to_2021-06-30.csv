@@ -1,0 +1,4 @@
+,flrID,instruments,beginTime,peakTime,endTime,classType,sourceLocation,activeRegionNum,note,linkedEvents,submissionTime,link
+0,2021-06-23T06:43:00-FLR-001,[{'displayName': 'GOES-P: EXIS 1.0-8.0'}],2021-06-23T06:43Z,2021-06-23T07:07Z,2021-06-23T07:34Z,C3.4,N14E89,,,[{'activityID': '2021-06-23T07:24:00-CME-001'}],2021-06-23T19:18Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/17132/-1
+1,2021-06-25T02:45:00-FLR-001,[{'displayName': 'GOES-P: EXIS 1.0-8.0'}],2021-06-25T02:45Z,2021-06-25T03:04Z,2021-06-25T03:26Z,C6.0,N21W77,12833.0,,[{'activityID': '2021-06-25T03:24:00-CME-001'}],2021-06-25T17:01Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/17143/-1
+2,2021-06-25T13:48:00-FLR-001,[{'displayName': 'GOES-P: EXIS 1.0-8.0'}],2021-06-25T13:48Z,2021-06-25T14:03Z,2021-06-25T14:15Z,C1.7,N22W83,12833.0,,[{'activityID': '2021-06-25T14:24:00-CME-001'}],2021-06-25T17:04Z,https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/FLR/17144/-1
