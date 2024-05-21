@@ -10,6 +10,7 @@ from PIL import Image
 import io
 import os
 from PIL import Image
+import markdown_functions as md
 
 path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
 
@@ -45,100 +46,11 @@ st.markdown("""
 
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-.navbar-nav .nav-link {
-    padding-top: 40px; 
-    padding-bottom: 0px; 
-    color: black !important;
-}
-.navbar-brand {
-    margin-top: 40px; 
-    margin-bottom: 0px; 
-    color: black !important;
-}
-.navbar-nav .nav-link:hover {
-    color: white !important; /* Change font color on hover */
-}
-</style>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, rgba(27,68,214,0.5) 0%, rgba(9,121,108,0.8) 39%, rgba(121,255,0,0.2) 100%); height: 100px;">
-  <a class="navbar-brand" href="/home">Data Warehouse and Data Lake Systems</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-    <ul class="navbar-nav"> 
-      <li class="nav-item">
-        <a class="nav-link" href="/Home">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/About">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Earth_Weather">Earth</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Mars_Weather">Mars</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Solar_Flares">Flares</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-""", unsafe_allow_html=True)
+st.markdown(md.get_navbar_markdown(), unsafe_allow_html=True)
+st.markdown(md.background_and_tabs_styles(encoded_image), unsafe_allow_html = True)
 
 
-st.markdown(
-    f"""
-    <style>
-        .stApp {{
-            background-image: url('data:image/jpg;base64,{encoded_image}');
-            background-size: cover;
-        }}
-
-        /* Remove padding from the body */
-        body {{
-            padding-top: 20px;
-            margin-top: 0;
-        }}
-
-        /* Remove padding from the Streamlit root element */
-        .stApp {{
-            padding-top: 20px;
-            margin-top: 0;
-        }}
-
-        .stTabs [data-baseweb="tab-list"] {{
-            gap: 10px;
-            font-weight: bold;
-            justify-content: flex-end;
-            margin-right: 10px;
-        }}
-
-        .stTabs [data-baseweb="tab"] {{
-            height: 35px;
-            white-space: pre-wrap;
-            background-color: rgba(34, 128, 172, 0.25);
-            border-radius: 4px 4px 0px 0px;
-            gap: 3px;
-            padding-top: 0px;
-            padding-bottom: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            color: #143066;
-            font-weight: bold;
-        }}
-
-        .stTabs [aria-selected="true"] {{
-            background-color: rgba(229, 121, 41, 0.3);
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
+st.write("")
 st.title("")
 col_1, col_2, col_3 = st.columns([7, 2, 1])
 
@@ -170,7 +82,7 @@ st.markdown(
 with tab1:
     st.subheader("Who are we?")
     st.write("")
-    st.write("Our small group is composed of three space afficionados with Data as their first love 🧡")
+    st.write("Our small group is composed of three space aficionados with Data as their first love 🧡")
     st.write("""We met because these two interests brought us together. And we very quickly agreed that good and relevant data about Mars and even Earth is not only hard to find,
              it is not easily accessible to everyone in the community.
              As action takers we decided to take matters into our own hands and came up with Comparing Skies to break these barriers and 
@@ -205,7 +117,7 @@ with tab3:
         st.markdown("**Mars' Weather Data**")
         container = st.container(border=True)
         container.write("""This data was obtained from [Kaggle](https://www.kaggle.com/datasets/thedevastator/mars-weather-data-from-2012-to-2018). It contains data from 2012 to 2018 and we're working hard to collect more data to be added in the future.
-                        The dataset contains information about:
+                        The dataset holds information about:
                         \n 📆 Terrestrial date ↔️ The date on Earth when the data was collected 
                         \n 🌧️ Martian day when the data was collected
                         \n ⚖️ Min and max temperature
@@ -219,16 +131,24 @@ with tab3:
     with col_5:
         st.markdown("**Solar Flares Data**")
         container = st.container(border=True)
-        container.write("""This data was obtained from NASA's Mars Weather Service API. It contains data from 2012 to 2018 and we're working hard to collect more data to be added in the future.
+        container.write("""This data was obtained from NASA's DONKI (The Space Weather Database Of Notifications, Knowledge, Information). .
                         The dataset contains information about:
-                        \n 📆 Terrestrial date ↔️ The date on Earth when the data was collected 
-                        \n 🌧️ Martian day when the data was collected
-                        \n ⚖️ Min and max temperature
-                        \n ↘️ Atmospheric pressure
-                        \n 🌬️ Wind speed
+                        \n ⏱️ Duration (begin, peak and end time) of flare
+                        \n 📑 Class type
+                        \n 🗺️ Source Location
+                        \n 📈 Intensity
                         """)
 
 
 
 with tab4:
     st.title("")
+    st.write("""Besides collecting the data, our small group of Stargazers (we also go for Cosmic Devotees or Galactic Fans (but never nerds)) also works on exploring the data. 
+             \n We build cool plots to explore how values we collect fluctuate through time and possibly identify trends and patterns, we compare and try to find relationships between 
+             different features of our data and we even dip our toes on forecasting some of these events.
+             \n This is what you get when you combine three Data Scientists by day and Galactic Enthusiasts by night!
+             \n The best ones by type can be found in the navigation bar's respective link ↗️
+
+             \n We invite you to explore the datasets and use it to also conduct your own analysis and exploration. Perhaps you'll be responsiblle for the next 
+             great scientific breakthrough (and we would love to know that we brought you the data to help you focus on everything else!)
+             """)
