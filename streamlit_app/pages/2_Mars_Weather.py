@@ -62,7 +62,7 @@ st.markdown("""
 }
 </style>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, rgba(27,68,214,0.5) 0%, rgba(9,121,108,0.8) 39%, rgba(121,255,0,0.2) 100%); height: 100px;">
-  <a class="navbar-brand" href="/home">Data Warehouse and Data Lake Systems</a>
+  <span class="navbar-brand" style="text-decoration: none;">Data Warehouse and Data Lake Systems</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

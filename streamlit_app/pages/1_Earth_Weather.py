@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 import plotly.express as px
+import plotly.graph_objects as go
 from datetime import datetime
 import json
 import base64
@@ -10,6 +11,8 @@ from PIL import Image
 import io
 import os
 from PIL import Image
+
+import markdown_functions as md
 
 import db_connect
 import plotly.express as px
@@ -96,6 +99,41 @@ st.markdown("""
 </nav>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <style>
+        /* Your global theme styles here */
+        body {{
+            color: white!important;
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            color: white!important;
+        }}
+        td, th {{
+            color: white!important;
+        }}
+        p {{
+            color: black!important;
+        }}
+        li {{
+            color: black!important;
+        }}
+        a {{
+            color: white!important;
+        }}
+     .navbar-brand,.navbar-nav.nav-link {{
+            color: blue!important;
+        }}
+     .navbar-nav.nav-link:hover {{
+            color: white!important; /* Keep hover effect */
+        }}
+        /* Targeting dropdown options within the select box */
+     .stSelectbox div[data-baseweb="select"] > div[role="listbox"] > div[role="option"],
+     .stSelectbox div[data-baseweb="select"] > div[role="listbox"] > div[role="option"]:hover {{
+            background-color: #f0f0f0; /* Change this to your desired background color */
+            color: white!important; /* Ensuring text color contrasts well with the background */
+        }}
+    </style>
+""", unsafe_allow_html=True)
 
 st.markdown(
     f"""
@@ -146,51 +184,65 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+        .stSelectbox div[data-baseweb="select"] > div:first-child {{
+                background: linear-gradient(90deg, rgba(27,68,214,0.5) 0%, rgba(9,121,108,0.8) 39%, rgba(121,255,0,0.2) 100%);
+                border-color: rgba(27,68,214,0.5);
+                color: rgba(27,68,214,0.5);
+                padding: 2px;
+                border-radius: 5px;
+            }}
+        .stSelectbox div[data-baseweb="select"] > div[role="listbox"] > div[role="option"] {{
+                background-color: white!important;
+                color: white!important;
+                padding: 10px;
+                border-radius: 5px;
+            }}
+        .stSelectbox div[data-baseweb="select"] > div[role="listbox"] > div[role="option"]:hover {{
+                background-color: rgba(9,121,108,0.8); /* Ensures hover state has matching color */
+                color: #fcfcfc;
+            }}
+    </style>
+    """,
+    unsafe_allow_html=True)
+
 #__________________________________________________________
 
-earth_weather_data = db_connect.earth_weather_data()
-daily_average = earth_weather_data.groupby('date').agg({
-    "latitude" : "first",
-    "longitude" : "first",
-    "temperature_2m" : "mean",
-    "relative_humidity" : "mean",
-    "rain" : "mean", 
-    "direct_radiation_instant" : "mean",
-    "location" : "first" 
-}).reset_index()
+import matplotlib.pyplot as plt
 
 
-locations = ["Amazon", "Athens", "Death Valley", "Everest", "London", "McMurdo", "Oymyakon", "Sahara", "Serengeti", "Sydney", "Zurich", ]
+locations = ["Amazon", "Athens", "Valley", "Everest", "London", "McMurdo", "Oymyakon", "Sahara", "Serengeti", "Sydney", "Zurich", ]
 
 st.title("Weather Visualization")
 
-if locations:
-    selected_location = st.selectbox(
-        "Select a Location",
-        options = locations,
-        index=0
-    )
+@st.cache_data
+def load_data(location):
+    return pd.read_parquet(f"./data/{location}.parquet.gzip")
 
-    selected_feature_options = ["Rain", "Temperature", "Radiation"]
-    selected_feature = st.selectbox(
-        "Select a Feature",
-        options=selected_feature_options,
-        index = selected_feature_options.index("Rain")  # Default option
-    )
 
-    feature_columns = {
-        "Rain": "rain",
-        "Temperature": "temperature_2m",
-        "Radiation": "direct_radiation_instant"
-    }
+location = st.selectbox("Select Location", options=locations)
 
-    selected_column_name = feature_columns[selected_feature]
-    filtered_df = daily_average[daily_average[selected_column_name].notna()]
+# Load and cache data for the selected location
+data = load_data(location)
+features = ['Rain', 'Temperature', 'Direct Radiation']
 
-    if not filtered_df.empty:
-        fig = px.line(filtered_df, x="date", y=selected_column_name, title=f"{selected_feature} Over Time in {selected_location}")
-        st.plotly_chart(fig)
-    else:
-        st.write(f"No data available for {selected_feature} in {selected_location}. Please check your dataset.")
-else:
-    st.write("No locations found in the database.")
+
+feature_columns = {
+    "Rain": "rain",
+    "Temperature": "temperature_2m",
+    "Radiation": "direct_radiation_instant"
+}
+selected_feature = st.selectbox("Select Feature to Plot", options=features)
+
+selected_column_name = feature_columns[selected_feature]
+
+
+fig = px.line(data, x="date", y=selected_column_name, title=f"{selected_feature} Over Time in {location}")
+fig.update_layout(paper_bgcolor='rgba(211, 211, 211, 0.7)', 
+                    plot_bgcolor='rgba(211, 211, 211, 0.2)',
+                    font=dict(size=12,
+                            color='black'))
+fig.update_traces(line_color='paleturquoise')
+st.plotly_chart(fig, theme=None)
