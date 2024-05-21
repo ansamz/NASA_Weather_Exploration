@@ -218,6 +218,15 @@ with tab3:
 
     with col_5:
         st.markdown("**Solar Flares Data**")
+        container = st.container(border=True)
+        container.write("""This data was obtained from NASA's Mars Weather Service API. It contains data from 2012 to 2018 and we're working hard to collect more data to be added in the future.
+                        The dataset contains information about:
+                        \n 📆 Terrestrial date ↔️ The date on Earth when the data was collected 
+                        \n 🌧️ Martian day when the data was collected
+                        \n ⚖️ Min and max temperature
+                        \n ↘️ Atmospheric pressure
+                        \n 🌬️ Wind speed
+                        """)
 
 
 
