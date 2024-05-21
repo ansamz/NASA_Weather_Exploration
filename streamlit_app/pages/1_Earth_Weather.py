@@ -279,6 +279,8 @@ scaler = MinMaxScaler()
 merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]] = scaler.fit_transform(merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]])
 merged_df['temperature_2m_smooth'] = merged_df['temperature_2m'].rolling(window=7).mean()
 
+st.subheader("Mars Minimum Temperature vs. Earth Temperature (Solar Flare Impact by Intensity)")
+
 fig2 = px.scatter(merged_df, x="min_temp", y="temperature_2m_smooth", color="intensity",
                   title="Mars Minimum Temperature vs. Earth Temperature (Solar Flare Impact by Intensity)",
                   labels={"min_temp": "Mars Min Temp", "temperature_2m_smooth": "Earth Temperature"},
@@ -289,3 +291,35 @@ fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)',
                   height=500, 
                   width=1300)
 st.plotly_chart(fig2, theme=None)
+
+#__________________________________________________________
+
+st.subheader("Solar Flare Impact")
+
+# Solar Flare Impact Visualization:
+fig3 = px.line(merged_df, x="date", y=["temperature_2m_smooth", "solar_flare"],
+              title="Earth Temperature and Solar Flare Events",
+              labels={"date": "Date", "temperature_2m": "Earth Temperature", "solar_flare": "Solar Flare"})
+
+# include a range slider and range selector
+fig3.update_layout(
+    xaxis=dict(
+        rangeslider=dict(
+            visible=True
+        ),
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1, label="1Y", step="year", stepmode="backward"),
+                dict(count=2, label="2Y", step="year", stepmode="backward"),
+                dict(count=5, label="5Y", step="year", stepmode="backward"),
+                dict(step="all", label="All")
+            ])
+        )
+    ),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    font=dict(color='black'),
+    height=1000,
+    width=2000
+)
+st.plotly_chart(fig3, theme=None)
