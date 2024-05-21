@@ -5,25 +5,15 @@ import streamlit.components.v1 as components
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
-import json
 import base64
-from PIL import Image
-import io
-import os
 from PIL import Image
 
 import markdown_functions as md
 
-import db_connect
-import plotly.express as px
 from sklearn.preprocessing import MinMaxScaler
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose
 from scipy import stats
-
-import sqlalchemy
-from sqlalchemy.sql import text
-import toml
 
 path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
 path_html = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/html_plots/"
@@ -31,9 +21,9 @@ path_html = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
-    page_icon="🌎",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    page_icon = "🌎",
+    layout = "wide",
+    initial_sidebar_state = "collapsed"
 )
 
 
@@ -60,10 +50,10 @@ st.markdown("""
 
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
-st.markdown(md.get_navbar_markdown(), unsafe_allow_html=True)
+st.markdown(md.get_navbar_markdown(), unsafe_allow_html = True)
 st.markdown(md.background_and_tabs_styles(encoded_image), unsafe_allow_html = True)
-st.markdown(md.get_global_theme_styles(), unsafe_allow_html=True)
-st.markdown(md.get_selectbox_styles(), unsafe_allow_html=True)
+st.markdown(md.get_global_theme_styles(), unsafe_allow_html = True)
+st.markdown(md.get_selectbox_styles(), unsafe_allow_html = True)
 
 #__________________________________________________________
 
@@ -79,41 +69,44 @@ with col_1:
 
 with col_2:
     st.write("")
-    st.image("images/logo_cs.png", width=200)
+    st.image("images/logo_cs.png", width = 200)
 
 with col_3:
     st.write("")
 
+
+
+# loads and caches data for the selected location
 @st.cache_data
 def load_data(location):
     return pd.read_parquet(f"./data/{location}.parquet.gzip")
 
 
-location = st.selectbox("Select Location", options=locations)
+location = st.selectbox("Select Location", options = locations)
 
-# Load and cache data for the selected location
 data = load_data(location)
-features = ['Rain', 'Temperature', 'Direct Radiation']
+features = ["Temperature", "Rain", "Humidity", "Direct Radiation"]
 
 
 feature_columns = {
-    "Rain": "rain",
     "Temperature": "temperature_2m",
+    "Rain": "rain",
+    "Humidity": "relative_humidity_2m",
     "Radiation": "direct_radiation_instant"
 }
-selected_feature = st.selectbox("Select Feature to Plot", options=features)
+selected_feature = st.selectbox("Select Feature to Plot", options = features)
 
 selected_column_name = feature_columns[selected_feature]
 
-fig = px.line(data, x="date", y=selected_column_name, title=f"{selected_feature} Over Time in {location}",
-                 width=1300, height=500)
-fig.update_layout(paper_bgcolor='rgba(242, 245, 250, 0.4)', 
-                    plot_bgcolor='rgba(242, 245, 250, 0.2)',
+fig = px.line(data, x = "date", y = selected_column_name, title = f"{selected_feature} Over Time in {location}",
+                 width = 1300, height = 500)
+fig.update_layout(paper_bgcolor = "rgba(242, 245, 250, 0.4)", 
+                    plot_bgcolor = "rgba(242, 245, 250, 0.2)",
 
-                    font=dict(size=12,
-                              color='black'))
-fig.update_traces(line_color='#7792E3')
-st.plotly_chart(fig, theme=None)
+                    font=dict(size = 12,
+                              color = "black"))
+fig.update_traces(line_color = "#7792E3")
+st.plotly_chart(fig, theme = None)
 
 #__________________________________________________________
 
