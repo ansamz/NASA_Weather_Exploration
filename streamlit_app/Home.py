@@ -148,7 +148,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("images/logo_main.png", width=300)
+    st.image("images/logo_cs.png", width=350)
 
 
 st.title("")

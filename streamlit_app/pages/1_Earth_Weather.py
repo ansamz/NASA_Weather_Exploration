@@ -217,7 +217,18 @@ st.markdown(
 
 locations = ["Amazon", "Athens", "Valley", "Everest", "London", "McMurdo", "Oymyakon", "Sahara", "Serengeti", "Sydney", "Zurich", ]
 
-st.title("Weather Visualization")
+st.title("")
+col_1, col_2, col_3 = st.columns([8, 2, 0.5])
+
+with col_1:  
+    st.title("Weather Visualization")
+
+with col_2:
+    st.write("")
+    st.image("images/logo_cs.png", width=200)
+
+with col_3:
+    st.write("")
 
 @st.cache_data
 def load_data(location):
