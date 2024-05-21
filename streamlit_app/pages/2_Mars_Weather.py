@@ -142,18 +142,19 @@ st.markdown(
 )
 
 
-st.title("")
-col_1, col_2, col_3 = st.columns([7, 2, 1])
 
-with col_1:
-    st.title("")
+st.title("")
+col_1, col_2, col_3 = st.columns([8, 2, 0.5])
+
+with col_1:  
     st.title("Mars Weather")
-    #st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
 
 with col_2:
-    st.title("")
-    st.image("images/logo_main.png", width=300)
+    st.write("")
+    st.image("images/logo_cs.png", width=200)
 
+with col_3:
+    st.write("")
 
 daily_avg = pd.read_parquet('./data/df.parquet.gzip')
 mars_weather_data = pd.read_parquet('./data/mars.parquet.gzip')

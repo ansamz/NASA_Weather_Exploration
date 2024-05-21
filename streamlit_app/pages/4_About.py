@@ -145,19 +145,28 @@ col_1, col_2, col_3 = st.columns([7, 2, 1])
 with col_1:
     st.title("")
     st.title("About")
-    # st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
 
 with col_2:
     st.title("")
-    st.image("images/logo_main.png", width=300)
+    st.image("images/logo_cs.png", width=300)
 
 
 st.write("")
 st.write("")
 
 
-tab1, tab2, tab3, tab4 = st.tabs(["About Us", "Our Team", "Data", "Analysis"])
-    
+tab1, tab2, tab3, tab4 = st.tabs(["**About Us**", "**Our Team**", "**Data**", "**Analysis**"])
+st.markdown(
+    """
+    <style>
+    .stTabs [role="tablist"] {
+        justify-content: flex-start;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 with tab1:
     st.subheader("Who are we?")
     st.write("")
@@ -175,10 +184,49 @@ with tab2:
 with tab3:
     st.title("")
     st.write("Our data is comprised of:")
-    tab1, tab2, tab3 = st.tabs(["**Earth's Weather Data**", "**Mars' Weather Data**", "**Solar Flares Data**"])
-    st.markdown("**Earth's Weather Data**")
-    st.markdown("**Mars' Weather Data**")
-    st.markdown("**Solar Flares Data**")
+    
+    col_1, col_2, col_3, col_4, col_5 = st.columns([3, 1, 3, 1, 3])
+
+    with col_1:
+        st.markdown("**Earth's Weather Data**")
+        container = st.container(border=True)
+        container.write("""This data was obtained from Open-Meteo's API. This allows us to obtain data from 1940 until the present day.
+                        The dataset contains information about:
+                        \n 🌡️ Air temperature at 2 meters above ground (ºC) 
+                        \n 🌧️ Only liquid precipitation of the preceding hour including local showers and rain from large scale systems (mm)
+                        \n 🌤️ Direct solar radiation 
+                        \n 💦 Relative humidity at 2 meters above ground (%)""")
+        
+
+    with col_2:
+        st.write("")
+
+    with col_3:
+        st.markdown("**Mars' Weather Data**")
+        container = st.container(border=True)
+        container.write("""This data was obtained from [Kaggle](https://www.kaggle.com/datasets/thedevastator/mars-weather-data-from-2012-to-2018). It contains data from 2012 to 2018 and we're working hard to collect more data to be added in the future.
+                        The dataset contains information about:
+                        \n 📆 Terrestrial date ↔️ The date on Earth when the data was collected 
+                        \n 🌧️ Martian day when the data was collected
+                        \n ⚖️ Min and max temperature
+                        \n ↘️ Atmospheric pressure
+                        \n 🌬️ Wind speed
+                        """)
+
+    with col_4:
+        st.write("")
+
+    with col_5:
+        st.markdown("**Solar Flares Data**")
+        container = st.container(border=True)
+        container.write("""This data was obtained from NASA's Mars Weather Service API. It contains data from 2012 to 2018 and we're working hard to collect more data to be added in the future.
+                        The dataset contains information about:
+                        \n 📆 Terrestrial date ↔️ The date on Earth when the data was collected 
+                        \n 🌧️ Martian day when the data was collected
+                        \n ⚖️ Min and max temperature
+                        \n ↘️ Atmospheric pressure
+                        \n 🌬️ Wind speed
+                        """)
 
 
 
