@@ -324,6 +324,10 @@ Move all the data to one S3 bucket in order to move it to a database.
 
 check the script data_transfer.py
 
+## Step 7 perform data analysis and forecasting
+
+check out the notebook streamlit_prep.ipynb
+
 ## Step 6 connect a streamlit app to the database
 
 and create visualizations
