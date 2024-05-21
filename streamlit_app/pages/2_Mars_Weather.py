@@ -16,7 +16,7 @@ path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Explo
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
-    page_icon="earth_spin.gif",
+    page_icon="./images/mars_icon.jpg",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -62,14 +62,17 @@ st.markdown("""
 }
 </style>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, rgba(27,68,214,0.5) 0%, rgba(9,121,108,0.8) 39%, rgba(121,255,0,0.2) 100%); height: 100px;">
-  <span class="navbar-brand" style="text-decoration: none;">Data Warehouse and Data Lake Systems</span>
+  <a class="navbar-brand" href="/home">Data Warehouse and Data Lake Systems</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
     <ul class="navbar-nav"> 
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="/home">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/Home">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/About">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Earth_Weather">Earth</a>

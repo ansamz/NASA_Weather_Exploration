@@ -16,7 +16,7 @@ path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Explo
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
-    page_icon="earth_spin.gif",
+    page_icon="🌌",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -68,8 +68,11 @@ st.markdown("""
   </button>
   <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
     <ul class="navbar-nav"> 
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="/home">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/Home">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/About">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Earth_Weather">Earth</a>
@@ -148,4 +151,21 @@ with col_2:
     st.image("images/logo_main.png", width=300)
 
 
-st.write("Project Description here ")
+st.title("")
+st.title("")
+st.write("")
+st.write("")
+st.write("Welcome to Comparing Skies!")
+st.write("""We are a group of space enthusiasts that couldn't find relevant information on Earth's and Mars' weather and decided it was time to take action.
+         We rolled our sleeves and set out to compile in an easy and accessible way the information needed to understand if Mars can be a potential habitat 
+         in the event of a catastrophy that rules out Earth as our home. 
+         """)
+
+st.write("""
+        Here, we provide the scientific and general community a central source of data. Furthermore, our team also performs data analysis and shares the resulting insights.    
+""")
+
+st.write("""
+        So, join us in our journey of exploration. The ride is about to get heated!  🔥   
+""")
+

@@ -26,11 +26,12 @@ from sqlalchemy.sql import text
 import toml
 
 path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
+path_html = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/html_plots/"
 
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
-    page_icon="earth_spin.gif",
+    page_icon="🌎",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -82,8 +83,11 @@ st.markdown("""
   </button>
   <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
     <ul class="navbar-nav"> 
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="/home">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/Home">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/About">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Earth_Weather">Earth</a>
@@ -210,8 +214,6 @@ st.markdown(
 
 #__________________________________________________________
 
-import matplotlib.pyplot as plt
-
 
 locations = ["Amazon", "Athens", "Valley", "Everest", "London", "McMurdo", "Oymyakon", "Sahara", "Serengeti", "Sydney", "Zurich", ]
 
@@ -238,11 +240,13 @@ selected_feature = st.selectbox("Select Feature to Plot", options=features)
 
 selected_column_name = feature_columns[selected_feature]
 
+fig = px.line(data, x="date", y=selected_column_name, title=f"{selected_feature} Over Time in {location}",
+                 width=1300, height=500)
+fig.update_layout(paper_bgcolor='rgba(242, 245, 250, 0.4)', 
+                    plot_bgcolor='rgba(242, 245, 250, 0.2)',
 
-fig = px.line(data, x="date", y=selected_column_name, title=f"{selected_feature} Over Time in {location}")
-fig.update_layout(paper_bgcolor='rgba(211, 211, 211, 0.7)', 
-                    plot_bgcolor='rgba(211, 211, 211, 0.2)',
                     font=dict(size=12,
-                            color='black'))
-fig.update_traces(line_color='paleturquoise')
+                              color='black'))
+fig.update_traces(line_color='#7792E3')
 st.plotly_chart(fig, theme=None)
+
