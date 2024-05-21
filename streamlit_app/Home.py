@@ -56,8 +56,8 @@ col_1, col_2, col_3 = st.columns([7, 2, 1])
 
 with col_1:
     st.title("")
-    st.title("Comparing Skies ")
-    st.write("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
+    st.title("**Comparing Skies**")
+    st.subheader("A Cross-Planetary Study of Earth's and Mars's Atmospheric Patterns")
 
 with col_2:
     st.title("")
@@ -68,7 +68,7 @@ st.title("")
 st.title("")
 st.write("")
 st.write("")
-st.write("Welcome to Comparing Skies!")
+st.write("Welcome to Compare-Skies!")
 st.write("""We are a group of space enthusiasts that couldn't find relevant information on Earth's and Mars' weather and decided it was time to take action.
          We rolled our sleeves and set out to compile in an easy and accessible way the information needed to understand if Mars can be a potential habitat 
          in the event of a catastrophy that rules out Earth as our home. 
