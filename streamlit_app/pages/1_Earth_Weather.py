@@ -250,3 +250,42 @@ fig.update_layout(paper_bgcolor='rgba(242, 245, 250, 0.4)',
 fig.update_traces(line_color='#7792E3')
 st.plotly_chart(fig, theme=None)
 
+#__________________________________________________________
+
+daily_avg = pd.read_parquet('./data/df.parquet.gzip')
+mars_weather_data = pd.read_parquet('./data/mars.parquet.gzip')
+solar_flares_data = pd.read_parquet('./data/flare.parquet.gzip')
+mars_weather_data = mars_weather_data[["terrestrial_date", "min_temp", "max_temp", "pressure"]]
+earth_weather_data_daily = daily_avg[["date", "temperature_2m", "relative_humidity_2m", "rain", "direct_radiation_instant"]]
+solar_flares_data = solar_flares_data[["peaktime", "classtype", "intensity"]]
+# Rename Columns for Consistency:
+mars_weather_data.rename(columns={"terrestrial_date": "date"}, inplace=True)
+solar_flares_data.rename(columns={"peaktime": "date"}, inplace=True)
+
+mars_weather_data['date'] = pd.to_datetime(mars_weather_data['date']).dt.date
+earth_weather_data_daily['date'] = pd.to_datetime(earth_weather_data_daily['date']).dt.date
+solar_flares_data['date'] = pd.to_datetime(solar_flares_data['date'], errors = 'coerce').dt.date
+# Merge DataFrames:
+merged_df = pd.merge(mars_weather_data, earth_weather_data_daily, on="date", how="left")
+merged_df = pd.merge(merged_df, solar_flares_data, on="date", how="left")
+merged_df['date'] = pd.to_datetime(merged_df['date']).dt.date
+merged_df = merged_df.sort_values('date', ascending=False)
+merged_df['solar_flare'] = merged_df['classtype'].notna().astype(int)
+merged_df['intensity'] = merged_df['intensity'].fillna('None')
+merged_df['classtype'] = merged_df['classtype'].fillna('None')
+
+# Scale Data for Forecasting
+scaler = MinMaxScaler()
+merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]] = scaler.fit_transform(merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]])
+merged_df['temperature_2m_smooth'] = merged_df['temperature_2m'].rolling(window=7).mean()
+
+fig2 = px.scatter(merged_df, x="min_temp", y="temperature_2m_smooth", color="intensity",
+                  title="Mars Minimum Temperature vs. Earth Temperature (Solar Flare Impact by Intensity)",
+                  labels={"min_temp": "Mars Min Temp", "temperature_2m_smooth": "Earth Temperature"},
+                  category_orders={"intensity": ["Low", "Medium", "High"]})  # Assuming 'Low', 'Medium', 'High' are the intensity levels
+fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)',
+                  plot_bgcolor='rgba(0,0,0,0)',
+                  font=dict(color='black'),
+                  height=500, 
+                  width=1300)
+st.plotly_chart(fig2, theme=None)
