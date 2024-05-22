@@ -9,8 +9,8 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose
 from scipy import stats
 
-path = "NASA_Weather_Exploration/streamlit_app/images/"
-path_html = "NASA_Weather_Exploration/streamlit_app/html_plots/"
+path = "./images/"
+path_html = "./html_plots/"
 
 #_______ Page Setup
 st.set_page_config(
@@ -27,7 +27,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "NASA_Weather_Exploration/streamlit_app/images/background.jpg"
+background_image = "./images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -63,7 +63,7 @@ with col_1:
 
 with col_2:
     st.write("")
-    st.image("NASA_Weather_Exploration/streamlit_app/images/logo_cs.png", width = 200)
+    st.image("./images/logo_cs.png", width = 200)
 
 with col_3:
     st.write("")

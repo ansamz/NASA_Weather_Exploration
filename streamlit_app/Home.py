@@ -3,7 +3,7 @@ import streamlit as st
 import base64
 import markdown_functions as md
 
-path = "NASA_Weather_Exploration/streamlit_app/images/"
+path = "./images/"
 
 #_______ Page Setup
 st.set_page_config(
@@ -20,7 +20,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "NASA_Weather_Exploration/streamlit_app/images/background.jpg"
+background_image = "./images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -52,7 +52,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("NASA_Weather_Exploration/streamlit_app/images/logo_cs.png", width=350)
+    st.image("./images/logo_cs.png", width=350)
 
 
 st.title("")
