@@ -21,7 +21,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image =  os.path.abspath("./images/background.jpg")
+background_image = os.path.join(path, "background.jpg")
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
