@@ -1,6 +1,3 @@
-import base64
-import streamlit as st
-
 def get_navbar_markdown():
     return """
 <style>

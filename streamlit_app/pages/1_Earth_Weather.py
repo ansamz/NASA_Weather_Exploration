@@ -1,15 +1,9 @@
 #_______ Library Import
 import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
 import plotly.express as px
-import plotly.graph_objects as go
-from datetime import datetime
 import base64
-from PIL import Image
-
 import markdown_functions as md
-
 from sklearn.preprocessing import MinMaxScaler
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose

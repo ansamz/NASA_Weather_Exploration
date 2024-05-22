@@ -1,15 +1,6 @@
 #_______ Library Import
-import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
-import plotly.express as px
-from datetime import datetime
-import json
 import base64
-from PIL import Image
-import io
-import os
-from PIL import Image
 import markdown_functions as md
 
 path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
