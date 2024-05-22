@@ -135,8 +135,8 @@ fig.update_layout(
     legend_orientation="h",  # orientation to horizontal
     legend_x=0.5,  # center the legend horizontally
     legend_y=1.1,  # position the legend above the plot
-    height=500, 
-    width=1300,
+    height=1000, 
+    width=2000,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     font=dict(color='black')

@@ -99,7 +99,7 @@ selected_feature = st.selectbox("Select Feature to Plot", options = features)
 selected_column_name = feature_columns[selected_feature]
 
 fig = px.line(data, x = "date", y = selected_column_name, title = f"{selected_feature} Over Time in {location}",
-                 width = 1300, height = 500)
+                 width = 2000, height = 1000)
 fig.update_layout(paper_bgcolor = "rgba(242, 245, 250, 0.4)", 
                     plot_bgcolor = "rgba(242, 245, 250, 0.2)",
 
@@ -146,8 +146,8 @@ fig2 = px.scatter(merged_df, x="min_temp", y="temperature_2m_smooth", color="int
 fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)',
                   plot_bgcolor='rgba(0,0,0,0)',
                   font=dict(color='black'),
-                  height=500, 
-                  width=1300)
+                  height=1000,
+                  width=2000)
 st.plotly_chart(fig2, theme=None)
 
 #__________________________________________________________
@@ -181,3 +181,26 @@ fig3.update_layout(
     width=2000
 )
 st.plotly_chart(fig3, theme=None)
+
+#__________________________________________________________
+
+timeperiod = st.selectbox("Select Monthly or Annual", options = ('Annual', 'Monthly'))
+
+if timeperiod == 'Annual':
+    df = pd.read_parquet('./data/earth_yearavg.parquet.gzip')
+else:
+    df = pd.read_parquet('./data/earth_monthlyavg.parquet.gzip')
+
+fig4 = px.scatter(df, x="direct_radiation_instant", y="temperature_2m", animation_frame="date", 
+                #   animation_group="country",
+                size="rain", color="location", hover_name="location",
+                log_x=False, size_max=55, 
+                # range_x=[100,100000], range_y=[25,90]
+                )
+
+fig4.update_layout(paper_bgcolor='rgba(0,0,0,0)',
+                  plot_bgcolor='rgba(0,0,0,0)',
+                  font=dict(color='black'),
+                  height=1000,
+                  width=2000)
+st.plotly_chart(fig4, theme=None)

@@ -122,7 +122,7 @@ fig.update_yaxes(title_text="Degrees C", row=4, col=1)
 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',
                   plot_bgcolor='rgba(0,0,0,0)',
                   font=dict(color='black'),
-                  width=1500, 
+                  width=2000, 
                   height=1000, 
                   title_text="Time Series of Mars and Earth Weather Data")
 st.plotly_chart(fig, theme=None)
