@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import markdown_functions as md
 
-path = "C:/Users/joana/OneDrive/Desktop/HSLU/3rd_semester/DWL/NASA_Weather_Exploration/streamlit_app/images/"
+path = "NASA_Weather_Exploration/streamlit_app/images/"
 
 #_______ Page Setup
 st.set_page_config(
@@ -24,7 +24,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "images/background.jpg"
+background_image = "NASA_Weather_Exploration/streamlit_app/images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -54,7 +54,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("images/logo_cs.png", width=200)
+    st.image("NASA_Weather_Exploration/streamlit_app/images/logo_cs.png", width=200)
 
 with col_3:
     st.write("")
