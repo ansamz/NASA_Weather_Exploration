@@ -1,0 +1,12 @@
+requests
+matplotlib
+statsmodels
+plotly
+psycopg2-binary
+sqlalchemy
+streamlit
+toml 
+pmdarima
+pandas
+numpy
+pybase64
