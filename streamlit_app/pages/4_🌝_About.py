@@ -6,12 +6,12 @@ import markdown_functions as md
 path = "./images/"
 
 #_______ Page Setup
-st.set_page_config(
-    page_title="NASA Weather Exploration",
-    page_icon="🌝",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+# st.set_page_config(
+#     page_title="NASA Weather Exploration",
+#     page_icon="🌝",
+#     layout="wide",
+#     initial_sidebar_state="collapsed"
+# )
 
 
 def get_base64_of_bin_file(bin_file):

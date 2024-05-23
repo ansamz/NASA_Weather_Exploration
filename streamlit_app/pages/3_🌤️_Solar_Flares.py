@@ -10,12 +10,12 @@ import markdown_functions as md
 path = "./images/"
 
 #_______ Page Setup
-st.set_page_config(
-    page_title="NASA Weather Exploration",
-    page_icon="./images/mars_icon.jpg",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+# st.set_page_config(
+#     page_title="NASA Weather Exploration",
+#     page_icon="🌤️",
+#     layout="wide",
+#     initial_sidebar_state="collapsed"
+# )
 
 
 def get_base64_of_bin_file(bin_file):
@@ -50,14 +50,18 @@ st.title("")
 col_1, col_2, col_3 = st.columns([8, 2, 0.5])
 
 with col_1:  
-    st.title("Mars Weather")
+    st.title("Solar Flares")
 
 with col_2:
-    st.write("")
+    st.title("")
     st.image("./images/logo_cs.png", width=200)
 
 with col_3:
     st.write("")
+
+
+st.write("Solar Flares")
+st.write("Description")
 
 daily_avg = pd.read_parquet('./data/df.parquet.gzip')
 mars_weather_data = pd.read_parquet('./data/mars.parquet.gzip')
@@ -84,37 +88,47 @@ merged_df['classtype'] = merged_df['classtype'].fillna('None')
 # Scale Data for Forecasting
 scaler = MinMaxScaler()
 merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]] = scaler.fit_transform(merged_df[["min_temp", "max_temp", "pressure", "temperature_2m"]])
-merged_df['temperature_2m_smooth'] = merged_df['temperature_2m'].rolling(window=7).mean()
+earth_temp_daily_avg = merged_df.groupby('date')['temperature_2m'].mean().reset_index()
+earth_temp_daily_avg['solar_flare'] = merged_df.groupby('date')['solar_flare'].max().reset_index()['solar_flare']
+earth_temp_daily_avg['temperature_2m_smooth'] = earth_temp_daily_avg['temperature_2m'].rolling(window=7,center=True).mean()
 
-fig = make_subplots(rows=4, cols=1, shared_xaxes=True,
-                    subplot_titles=("Mars Min Temp", "Mars Max Temp", "Mars Pressure", "Earth Temperature"))
-
-# Plot each variable on a separate subplot
-fig.add_trace(go.Scatter(x=merged_df['date'], y=merged_df['min_temp'], name='Mars Min Temp'), row=1, col=1)
-fig.add_trace(go.Scatter(x=merged_df['date'], y=merged_df['max_temp'], name='Mars Max Temp'), row=2, col=1)
-fig.add_trace(go.Scatter(x=merged_df['date'], y=merged_df['pressure'], name='Mars Pressure'), row=3, col=1)
-fig.add_trace(go.Scatter(x=merged_df['date'], y=merged_df['temperature_2m_smooth'], name='Earth Temperature Smoothed'), row=4, col=1)
-
-fig.update_xaxes(title_text="Date", row=4, col=1, rangeslider_visible=True, rangeselector=dict(
-    buttons=list([
-        dict(count=1, label="1y", step="year", stepmode="backward"),
-        dict(count=2, label="2y", step="year", stepmode="backward"),
-        dict(count=5, label="5y", step="year", stepmode="backward"),
-        dict(step="all")
-    ])
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=earth_temp_daily_avg['date'],
+    y=earth_temp_daily_avg['temperature_2m_smooth'],
+    mode='lines',
+    name='Earth Temperature'
 ))
 
-# Update x-axis and y-axis labels
-fig.update_xaxes(title_text="Date", row=4, col=1)  # Only the last subplot needs the x-axis label
-fig.update_yaxes(title_text="Degrees C", row=1, col=1)
-fig.update_yaxes(title_text="Degrees C", row=2, col=1)
-fig.update_yaxes(title_text="Pressure (Pa)", row=3, col=1)
-fig.update_yaxes(title_text="Degrees C", row=4, col=1)
+fig.add_trace(go.Scatter(
+    x=earth_temp_daily_avg['date'],
+    y=earth_temp_daily_avg['temperature_2m_smooth'],
+    mode='markers',
+    marker=dict(
+        color=earth_temp_daily_avg['solar_flare'], 
+        size=10,
+        showscale=True,
+        colorscale='Viridis',
+        colorbar=dict(
+            title="Solar Flare Activity"
+        )
+    ),
+    name='Solar Flare Activity'
+))
 
-fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',
-                  plot_bgcolor='rgba(0,0,0,0)',
-                  font=dict(color='black'),
-                  width=2000, 
-                  height=1000, 
-                  title_text="Time Series of Mars and Earth Weather Data")
+fig.update_layout(
+    title="Earth Temperature vs. Solar Flare Activity",
+    xaxis_title="Date",
+    yaxis_title="Earth Temperature (smoothed)",
+    showlegend=True,
+    legend_orientation="h",  # orientation to horizontal
+    legend_x=0.5,  # center the legend horizontally
+    legend_y=1.1,  # position the legend above the plot
+    height=1000, 
+    width=2000,
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    font=dict(color='black')
+)
 st.plotly_chart(fig, theme=None)
+
