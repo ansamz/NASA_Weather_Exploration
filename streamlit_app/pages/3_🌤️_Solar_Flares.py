@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import markdown_functions as md
 
-path = "./images/"
+path = "streamlit_app/images/"
 
 #_______ Page Setup
 # st.set_page_config(
@@ -24,7 +24,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "./images/background.jpg"
+background_image = "streamlit_app/images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -54,7 +54,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("./images/logo_cs.png", width=200)
+    st.image("streamlit_app/images/logo_cs.png", width=200)
 
 with col_3:
     st.write("")
@@ -63,9 +63,9 @@ with col_3:
 st.write("Solar Flares")
 st.write("Description")
 
-daily_avg = pd.read_parquet('./data/df.parquet.gzip')
-mars_weather_data = pd.read_parquet('./data/mars.parquet.gzip')
-solar_flares_data = pd.read_parquet('./data/flare.parquet.gzip')
+daily_avg = pd.read_parquet('streamlit_app/data/df.parquet.gzip')
+mars_weather_data = pd.read_parquet('streamlit_app/data/mars.parquet.gzip')
+solar_flares_data = pd.read_parquet('streamlit_app/data/flare.parquet.gzip')
 mars_weather_data = mars_weather_data[["terrestrial_date", "min_temp", "max_temp", "pressure"]]
 earth_weather_data_daily = daily_avg[["date", "temperature_2m", "relative_humidity_2m", "rain", "direct_radiation_instant"]]
 solar_flares_data = solar_flares_data[["peaktime", "classtype", "intensity"]]

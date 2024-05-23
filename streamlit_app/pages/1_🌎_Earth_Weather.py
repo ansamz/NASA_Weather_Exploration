@@ -9,7 +9,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose
 from scipy import stats
 
-path = "./images/"
+path = "streamlit_app/images/"
 path_html = "./html_plots/"
 
 #_______ Page Setup
@@ -27,7 +27,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "./images/background.jpg"
+background_image = "streamlit_app/images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -63,7 +63,7 @@ with col_1:
 
 with col_2:
     st.write("")
-    st.image("./images/logo_cs.png", width = 200)
+    st.image("streamlit_app/images/logo_cs.png", width = 200)
 
 with col_3:
     st.write("")
@@ -73,7 +73,7 @@ with col_3:
 # loads and caches data for the selected location
 @st.cache_data
 def load_data(location):
-    return pd.read_parquet(f"./data/{location}.parquet.gzip")
+    return pd.read_parquet(f"streamlit_app/data/{location}.parquet.gzip")
 
 
 location = st.selectbox("Select Location", options = locations)
@@ -104,9 +104,9 @@ st.plotly_chart(fig, theme = None)
 
 #__________________________________________________________
 
-daily_avg = pd.read_parquet('./data/df.parquet.gzip')
-mars_weather_data = pd.read_parquet('./data/mars.parquet.gzip')
-solar_flares_data = pd.read_parquet('./data/flare.parquet.gzip')
+daily_avg = pd.read_parquet('streamlit_app/data/df.parquet.gzip')
+mars_weather_data = pd.read_parquet('streamlit_app/data/mars.parquet.gzip')
+solar_flares_data = pd.read_parquet('streamlit_app/data/flare.parquet.gzip')
 mars_weather_data = mars_weather_data[["terrestrial_date", "min_temp", "max_temp", "pressure"]]
 earth_weather_data_daily = daily_avg[["date", "temperature_2m", "relative_humidity_2m", "rain", "direct_radiation_instant"]]
 solar_flares_data = solar_flares_data[["peaktime", "classtype", "intensity"]]
@@ -181,9 +181,9 @@ st.plotly_chart(fig3, theme=None)
 timeperiod = st.selectbox("Select Monthly or Annual", options = ('Annual', 'Monthly'))
 
 if timeperiod == 'Annual':
-    df = pd.read_parquet('./data/earth_yearavg.parquet.gzip')
+    df = pd.read_parquet('streamlit_app/data/earth_yearavg.parquet.gzip')
 else:
-    df = pd.read_parquet('./data/earth_monthlyavg.parquet.gzip')
+    df = pd.read_parquet('streamlit_app/data/earth_monthlyavg.parquet.gzip')
 
 fig4 = px.scatter(df, x="direct_radiation_instant", y="temperature_2m", animation_frame="date", 
                 #   animation_group="country",

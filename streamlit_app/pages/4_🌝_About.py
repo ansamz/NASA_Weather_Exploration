@@ -3,7 +3,7 @@ import streamlit as st
 import base64
 import markdown_functions as md
 
-path = "./images/"
+path = "streamlit_app/images/"
 
 #_______ Page Setup
 # st.set_page_config(
@@ -20,7 +20,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 
-background_image = "./images/background.jpg"
+background_image = "streamlit_app/images/background.jpg"
 encoded_image = get_base64_of_bin_file(background_image)
 
 st.markdown("""
@@ -51,7 +51,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("./images/logo_cs.png", width=300)
+    st.image("streamlit_app/images/logo_cs.png", width=300)
 
 
 st.write("")

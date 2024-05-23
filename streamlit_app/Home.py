@@ -4,13 +4,13 @@ import base64
 import markdown_functions as md
 import os
 
-path = "./images/"
+path = "streamlit_app/images/"
 
 # st.write(os.getcwd())
 # checking if the current working directory is correct 
 # if os.getcwd()[-3:] == "src":
 #     os.chdir('.\streamlit_app')
-st.write(os.getcwd())
+# st.write(os.getcwd())
 
 #_______ Page Setup
 st.set_page_config(
@@ -59,7 +59,7 @@ with col_1:
 
 with col_2:
     st.title("")
-    st.image("./images/logo_cs.png", width=350)
+    st.image("streamlit_app/images/logo_cs.png", width=350)
 
 
 st.title("")
