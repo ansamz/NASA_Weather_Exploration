@@ -6,6 +6,12 @@ import os
 
 path = "./images/"
 
+st.write(os.getcwd())
+# checking if the current working directory is correct 
+if os.getcwd()[-3:] == "src":
+    os.chdir('..')
+st.write(os.getcwd())
+
 #_______ Page Setup
 st.set_page_config(
     page_title="NASA Weather Exploration",
