@@ -64,13 +64,11 @@ pip install -r requirements.txt
 Scripts to pull data from the APIs are located in the `data/` folder. These should be scheduled to run at regular intervals using AWS Lambda.
 
 ## Database Schema
-The schema for the PostgreSQL database is provided in the `docs/` folder. It includes tables for Mars weather data, Earth weather data, and solar flare data.
+![alternative text](img/table_structure.png)
 
-## Running the Analysis
-Execute the Jupyter notebooks in the `notebooks/` folder to perform data analysis and generate reports. Ensure all necessary data connections are configured.
 
 ## Visualization
 A Streamlit app is used to visualize the data. To run the app locally:
 ```bash
-streamlit run app.py
+streamlit run streamlit_app\Home.py
 ```
