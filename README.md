@@ -12,16 +12,21 @@ This project aims to compare atmospheric patterns on Earth and Mars, leveraging 
 
 #### -- Project Status: [In Progress]
 
-## Project Structure (TODO)
+## Project Structure
 
 ```plaintext
 /
-├── data/                  # Folder for datasets and data retrieval scripts
-├── docs/                  # Documentation and references
-├── src/                   # Source code for analysis and infrastructure setup
-├── tests/                 # Test cases for continuous integration
-├── lambda/                # AWS Lambda functions
-└── notebooks/             # Jupyter notebooks for exploration and analysis
+├── .streamlit/            # Streamlit configurations
+├── AZ_aws_code_docs       # Ansam's documentation and journal
+├── aws/                   # aws code and DB queries
+├── data/                  # Data downloaded
+├── img/                   # Images for the report, screenshots of aws functions
+├── Mars_data_notebook/                   
+├── NASA_API_notebooks/                   
+├── open_meteo_notebooks/
+├── proposal/       
+├── streamlit_app/         # Streamlit app code and notebooks for visualizations before integrating into the app
+└── requirements.txt       # requirements file to install all the libraries required for the project
 ```
 
 ## Technologies Used
