@@ -61,7 +61,9 @@ pip install -r requirements.txt
 ```
 
 ## Data Collection
-Scripts to pull data from the APIs are located in the `data/` folder. These should be scheduled to run at regular intervals using AWS Lambda.
+Scripts to pull data from the APIs are located in the `Mars_data_notebook/`, `NASA_API_notebooks/`, `open_meteo_notebooks/` folders. These should be scheduled to run at regular intervals using AWS Lambda.
+
+There are also sample data downloaded in the `data/` folder.
 
 ## Database Schema
 ![alternative text](img/table_structure.png)
