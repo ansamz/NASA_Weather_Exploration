@@ -10,7 +10,7 @@ This project aims to compare atmospheric patterns on Earth and Mars, leveraging 
  - [Joana Duarte](https://github.com/JDFDuarte)
 
 
-#### -- Project Status: [In Progress]
+#### -- Project Status: [Finished]
 
 ## Project Structure
 
